@@ -1,0 +1,16 @@
+<!-- src/main/resources/templates/error/404.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container my-4">
+    <h1>Oops! Page Not Found (404)</h1>
+    <p>The page you requested doesn't exist.</p>
+    <a class="btn btn-primary" th:href="@{/home}">Go to Home</a>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

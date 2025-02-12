@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container my-4">
+    <h1>Exercises (Spring Data JPA)</h1>
+    <!-- Form to filter exercises by name, minBurn, or fromDate -->
+    <form class="row g-3 my-3">
+        <div class="col-auto">
+            <input type="text" name="nameFilter" class="form-control"
+                   placeholder="Name filter" th:value="${nameFilter}"/>
+        </div>
+        <div class="col-auto">
+            <input type="number" step="0.1" name="minBurn" class="form-control"
+                   placeholder="Min Burn" th:value="${minBurn}"/>
+        </div>
+        <div class="col-auto">
+            <input type="date" name="fromDate" class="form-control" th:value="${fromDate}"/>
+        </div>
+        <div class="col-auto align-self-end">
+            <button class="btn btn-primary" type="submit">Filter</button>
+        </div>
+    </form>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col" th:each="ex : ${exercises}">
+            <div class="card h-100">
+                <img th:src="@{/images/{file}(file=${ex.imageFileName})}"
+                     class="card-img-top" alt="Exercise Image"/>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a th:href="@{/exercises/data/details/{id}(id=${ex.id})}"
+                           th:text="${ex.name}">Exercise Name</a>
+                    </h5>
+                    <p class="card-text">
+                        Average Burn: <span th:text="${ex.averageBurn}"></span>
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a th:href="@{/exercises/data/details/{id}(id=${ex.id})}"
+                       class="btn btn-sm btn-outline-primary">Details</a>
+                    <form method="post" th:action="@{/exercises/data/delete/{id}(id=${ex.id})}">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a th:href="@{/exercises/data/add}" class="btn btn-success mt-4">Add New Exercise</a>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

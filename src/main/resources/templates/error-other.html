@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container my-4">
+    <h1>Oops, Something Went Wrong</h1>
+    <div class="alert alert-warning" role="alert">
+        <p th:text="${errorMessage}">An unexpected error occurred.</p>
+    </div>
+    <p>This might be due to invalid input, or something else in the system.</p>
+    <a class="btn btn-secondary" th:href="@{/}">Home</a>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

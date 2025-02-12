@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container my-4">
+    <h1 th:text="${exercise.name}">Exercise Details</h1>
+    <div class="card mb-3">
+        <img th:src="@{/images/{file}(file=${exercise.imageFileName})}" class="card-img-top" alt="Exercise Image"/>
+        <div class="card-body">
+            <p><strong th:text="#{exercise.averageBurn}">Average Burn</strong>: <span th:text="${exercise.averageBurn}"></span></p>
+            <p><strong th:text="#{form.createdOn}">Created On</strong>: <span th:text="${exercise.createdOn}"></span></p>
+            <h5>Muscle Groups:</h5>
+            <ul>
+                <li th:each="mg : ${exercise.muscleGroups}">
+                    <a th:href="@{/musclegroups/details/{id}(id=${mg.id})}" th:text="${mg.name}">MuscleGroup</a>
+                </li>
+            </ul>
+            <h5>Levels:</h5>
+            <ul>
+                <li th:each="lvl : ${exercise.levels}">
+                    <!-- For example, display the enum + difficulty + description -->
+                    <strong th:text="${lvl.levelType}">Level Type</strong>
+                    (<span th:text="${lvl.difficultyIndex}">difficultyIndex</span>) –
+                    <span th:text="${lvl.description}">Description</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a th:href="@{/exercises}" class="btn btn-secondary" th:text="#{button.back}">Back</a>
+</div>
+
+
+<div th:replace="fragments/footer :: footer"></div>
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

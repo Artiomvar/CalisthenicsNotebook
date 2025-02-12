@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:text="#{app.title}">Fitness App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbars">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/exercises}" th:text="#{nav.exercises}">Exercises</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/musclegroups}" th:text="#{nav.musclegroups}">Muscle Groups</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/exercises/add}" th:text="#{nav.addExercise}">Add Exercise</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/musclegroups/add}" th:text="#{nav.addMusclegroup}">Add Muscle Group</a></li>
+                </ul>
+                <form class="d-flex">
+                    <select class="form-select" name="lang">
+                        <option value="en" th:text="#{lang.en}">English</option>
+                        <option value="nl" th:text="#{lang.other}">Dutch</option>
+                    </select>
+                    <button class="btn btn-outline-success ms-2" type="submit" th:text="#{button.changeLanguage}">Change Language</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</th:block>
+</html>

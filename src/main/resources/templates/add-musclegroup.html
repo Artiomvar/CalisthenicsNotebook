@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container my-4">
+    <h1 th:text="#{addMusclegroup.title}">Add Muscle Group</h1>
+    <form method="post" th:action="@{/musclegroups/add}" th:object="${musclegroup}" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-6">
+            <label class="form-label" th:for="*{name}" th:text="#{form.name}">Name</label>
+            <input type="text" class="form-control" th:field="*{name}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" th:for="*{description}" th:text="#{form.description}">Description</label>
+            <input type="text" class="form-control" th:field="*{description}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" th:for="*{establishedOn}" th:text="#{form.establishedOn}">Established On</label>
+            <input type="date" class="form-control" th:field="*{establishedOn}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('establishedOn')}" th:errors="*{establishedOn}">Error</div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" th:for="*{complexityFactor}" th:text="#{musclegroups.complexityFactor}">Complexity Factor</label>
+            <input type="number" step="0.1" class="form-control" th:field="*{complexityFactor}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('complexityFactor')}" th:errors="*{complexityFactor}">Error</div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit" th:text="#{button.add}">Add</button>
+        </div>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+<script>
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })();
+</script>
+</body>
+</html>

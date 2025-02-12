@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container my-4">
+    <h1>Welcome to Fitness App</h1>
+    <p>This is the Home Page.</p>
+    <p>Click to see <a th:href="@{/exercises}">Exercises</a></p>
+    <p>Click to see <a th:href="@{/musclegroups}">Muscle Groups</a></p>
+
+    <!-- Example: The 2 JSON Export buttons from your previous assignment -->
+    <p>Export data to JSON:</p>
+    <a th:href="@{/export/exercises}" class="btn btn-primary" download="exercises.json">
+        Export Exercises JSON
+    </a>
+    <a th:href="@{/export/musclegroups}" class="btn btn-secondary" download="musclegroups.json">
+        Export MuscleGroups JSON
+    </a>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
